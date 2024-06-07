@@ -1,0 +1,10 @@
+C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.csproj.AssemblyReference.cache
+C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.csproj.SuggestedBindingRedirects.cache
+C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.Properties.Resources.resources
+C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.csproj.GenerateResource.cache
+C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.csproj.CoreCompileInputs.cache
+C:\Users\Akl\Desktop\Start\Start\bin\Debug\Start.exe.config
+C:\Users\Akl\Desktop\Start\Start\bin\Debug\Start.exe
+C:\Users\Akl\Desktop\Start\Start\bin\Debug\Start.pdb
+C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.exe
+C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.pdb
