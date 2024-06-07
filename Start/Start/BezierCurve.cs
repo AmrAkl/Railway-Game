@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Start
 {
-    internal class BezierCurve
+    internal class BezierCurve : Rail
     {
 
         public List<Point> ControlPoints;
 
         public float t_inc = 0.001f;
+        public float time = 0;
 
         public Color cl = Color.Red;
         public Color clr1 = Color.Blue;
@@ -21,6 +22,7 @@ namespace Start
         public BezierCurve()
         {
             ControlPoints = new List<Point>();
+            ControlPoints.Add(new Point((int)srt.X,(int) end.Y));
         }
 
 
@@ -123,12 +125,30 @@ namespace Start
             }
         }
 
-        public void DrawCurve(Graphics g)
+        public override void Draw(Graphics g)
         {
             DrawControlPoints(g);
             DrawCurvePoints(g);
         }
 
+        public override PointF calcNextPoint()
+        {
+            time += t_inc;
+            return CalcCurvePointAtTime(time);
+        }
+        public override void Relocate(Point e)
+        {
+            float deltx = e.X - srt.X;
+            float deltY = e.Y - srt.Y;
+            srt.X += (int)deltx;
+            srt.Y += (int)deltY;
+            end.X += (int)deltx;
+            end.Y += (int)deltY;
+            for(int i =  0; i < ControlPoints.Count; i++)
+            {
+                ControlPoints[i] = new Point(ControlPoints[i].X + (int)deltx, ControlPoints[i].Y + (int)deltY);
+            }
+        }
 
     }
 }

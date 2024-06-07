@@ -1,36 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Start
 {
-    internal class DDA
+    internal class DDA : Rail
     {
-        public float X, Y;
         float dy, dx, m;
         public float cx, cy;
         int speed = 10;
-        public void calc(DDA End)
+        public void calc()
         {
-            dy = End.Y - Y;
-            dx = End.X - X;
+            dy = end.Y - srt.Y;
+            dx = end.X - srt.X;
             m = dy / dx;
-            cx = X;
-            cy = Y;
+            cx = srt.X;
+            cy = srt.Y;
         }
-        public bool CalcNextPoint(DDA End)
+        
+        public override PointF calcNextPoint()
         {
             if (Math.Abs(dx) > Math.Abs(dy))
             {
-                if (X < End.X)
+                if (srt.X < end.X)
                 {
                     cx += speed;
                     cy += m * speed;
-                    if (cx >= End.X)
+                    if (cx >= end.X)
                     {
-                        return false;
+                        return new Point(-1, -1);
                     }
 
                 }
@@ -38,36 +39,49 @@ namespace Start
                 {
                     cx -= speed;
                     cy -= m * speed;
-                    if (cx <= End.X)
+                    if (cx <= end.X)
                     {
-                        return false;
+                        return new Point(-1, -1);
                     }
                 }
             }
             else
             {
-                if (Y < End.Y)
+                if (srt.Y < end.Y)
                 {
                     cy += speed;
                     cx += 1 / m * speed;
-                    if (cy >= End.Y)
+                    if (cy >= end.Y)
                     {
-                        return false;
+                        return new Point(-1, -1);
                     }
                 }
                 else
                 {
                     cy -= speed;
                     cx -= 1 / m * speed;
-                    if (cy <= End.Y)
+                    if (cy <= end.Y)
                     {
-                        return false;
+                        return new Point( -1,-1 );
                     }
                 }
 
             }
-            return true;
+            return new PointF(cx,cy);
         }
-
+        public override void Draw(Graphics g)
+        {
+            g.DrawLine(Pens.Black, srt, end);
+        }
+        public override void Relocate(Point e)
+        {
+            float deltx = e.X - srt.X;
+            float deltY = e.Y - srt.Y;
+            srt.X += (int)deltx;
+            srt.Y += (int)deltY;
+            end.X += (int)deltx; 
+            end.Y += (int)deltY;
+            calc();
+        }
     }
 }

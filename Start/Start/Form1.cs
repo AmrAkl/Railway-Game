@@ -15,6 +15,7 @@ namespace Start
         Bitmap off;
         Timer T = new Timer();
         //push test
+        List<Rail> cars = new List<Rail>();
         public Form1()
         {
             InitializeComponent();
