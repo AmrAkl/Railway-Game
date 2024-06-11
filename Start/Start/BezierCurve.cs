@@ -15,14 +15,14 @@ namespace Start
         public float t_inc = 0.001f;
         public float time = 0;
 
-        public Color cl = Color.Red;
+        public Color cl = Color.Black;
         public Color clr1 = Color.Blue;
         public Color ftColor = Color.Black;
 
         public BezierCurve()
         {
             ControlPoints = new List<Point>();
-            ControlPoints.Add(new Point((int)srt.X,(int) end.Y));
+            //ControlPoints.Add(new Point((int)srt.X,(int) end.Y));
         }
 
 
@@ -127,7 +127,7 @@ namespace Start
 
         public override void Draw(Graphics g)
         {
-            DrawControlPoints(g);
+            //DrawControlPoints(g);
             DrawCurvePoints(g);
         }
 
@@ -144,7 +144,7 @@ namespace Start
             srt.Y += (int)deltY;
             end.X += (int)deltx;
             end.Y += (int)deltY;
-            for(int i =  0; i < ControlPoints.Count; i++)
+            for (int i = 0; i < ControlPoints.Count; i++)
             {
                 ControlPoints[i] = new Point(ControlPoints[i].X + (int)deltx, ControlPoints[i].Y + (int)deltY);
             }
