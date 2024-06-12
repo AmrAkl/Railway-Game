@@ -25,6 +25,7 @@ namespace Start
         Rail currrail = null;
         List<Background> bgs = new List<Background>();
         int xdraw = 0;
+        Hero h = new Hero();
 
 
         public Form1()
@@ -42,6 +43,13 @@ namespace Start
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            if (curr == Modes.Move && e.KeyCode != Keys.S)
+                return;
+            else if(curr == Modes.Move && e.KeyCode == Keys.S)
+            {
+                xdraw = 500;
+                curr = Modes.Edit;
+            }
             switch (e.KeyCode)
             {
                 case Keys.D1:
@@ -86,6 +94,10 @@ namespace Start
                     break;
                 case Keys.A:
                     MoveLeft();
+                    break;
+                case Keys.S:
+                    curr = Modes.Move;
+                    currrail = cars[0];
                     break;
                 case Keys.U:
                     curveDirection = -1;
@@ -293,6 +305,23 @@ namespace Start
                     }
                     break;
                 case Modes.Move:
+                    //actor.coor = currrail.calcNextPoint();
+                    if (actor.coor.X> currrail.end.X)
+                    {
+                        if(cars.IndexOf(currrail) < cars.Count - 1)
+                        {
+                            currrail = cars[cars.IndexOf(currrail) + 1];
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                    else
+                    {
+                        actor.coor = currrail.calcNextPoint();
+                    }
                     break;
             }
             DrawDoubleBuffer(this.CreateGraphics());
@@ -328,6 +357,7 @@ namespace Start
                 car.Draw(g, Color.Black,xdraw);
             }
             currrail.Draw(g, Color.Blue, xdraw);
+            g.FillRectangle(Brushes.Black, new Rectangle(0, 750, Width, Height));
         }
 
         void CreateBackgrounds()

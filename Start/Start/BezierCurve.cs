@@ -15,6 +15,8 @@ namespace Start
 
         public float t_inc = 0.0001f;
         public float time = 0;
+        public float speed = 0.01f;
+        
 
         public Color cl = Color.Black;
         public Color clr1 = Color.Blue;
@@ -134,8 +136,9 @@ namespace Start
 
         public override PointF calcNextPoint()
         {
-            time += t_inc;
-            return CalcCurvePointAtTime(time);
+            time += speed;
+            float tt = time;
+            return CalcCurvePointAtTime(tt);
         }
         public override void Relocate(PointF e)
         {

@@ -13,7 +13,7 @@ namespace Start
         public int XC;
         public int YC;
         public float thRadian;
-        float theta = 0;
+        double theta = (2 * Math.PI);
         public void Drawcircle(Graphics g)
         {
             for (float i = 0; i <= (2 * Math.PI); i += (float)((2 * Math.PI) / 360))
@@ -37,7 +37,7 @@ namespace Start
 
             p.X = (float)(Rad * Math.Cos(thRadian)) + XC;
             p.Y = (float)(Rad * Math.Sin(thRadian)) + YC;
-            theta += (float)((2 * Math.PI) / 360);
+            theta -= (float)((2 * Math.PI) / 360);
             return p;
         }
         public override void Draw(Graphics g, Color c, int xs)

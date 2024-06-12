@@ -21,7 +21,6 @@ namespace Start
         }
         public void Draw(Graphics g, int xdraw)
         {
-            
                 dst.Y = y;
                 dst.X = x - xdraw;
                 g.DrawImage(img, dst, src, GraphicsUnit.Pixel);

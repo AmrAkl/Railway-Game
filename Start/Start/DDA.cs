@@ -31,7 +31,7 @@ namespace Start
                     cy += m * speed;
                     if (cx >= end.X)
                     {
-                        return new Point(-1, -1);
+                        return new Point((int)end.X + 1, (int)end.Y-20);
                     }
 
                 }
@@ -41,7 +41,7 @@ namespace Start
                     cy -= m * speed;
                     if (cx <= end.X)
                     {
-                        return new Point(-1, -1);
+                        return new Point((int)end.X + 1, (int)end.Y-20);
                     }
                 }
             }
@@ -53,7 +53,7 @@ namespace Start
                     cx += 1 / m * speed;
                     if (cy >= end.Y)
                     {
-                        return new Point(-1, -1);
+                        return new Point((int)end.X + 1, (int)end.Y - 20);
                     }
                 }
                 else
@@ -62,12 +62,12 @@ namespace Start
                     cx -= 1 / m * speed;
                     if (cy <= end.Y)
                     {
-                        return new Point( -1,-1 );
+                        return new Point( (int)end.X + 1, (int)end.Y-20);
                     }
                 }
 
             }
-            return new PointF(cx,cy);
+            return new PointF(cx,cy-20);
         }
         public override void Draw(Graphics g, Color c, int x)
         {
