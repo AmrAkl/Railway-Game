@@ -26,7 +26,8 @@ namespace Start
             end = e;
         }
         public abstract PointF calcNextPoint();
-        public abstract void Draw(Graphics g);
-        public abstract void Relocate(Point end);
+        public abstract void Draw(Graphics g, Color clr, int x);
+        public abstract void Relocate(PointF end);
+        public abstract void Resize(int sign);
     }
 }

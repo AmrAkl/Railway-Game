@@ -8,3 +8,13 @@ C:\Users\Akl\Desktop\Start\Start\bin\Debug\Start.exe
 C:\Users\Akl\Desktop\Start\Start\bin\Debug\Start.pdb
 C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.exe
 C:\Users\Akl\Desktop\Start\Start\obj\Debug\Start.pdb
+F:\Railway-Game\Start\Start\bin\Debug\Start.exe.config
+F:\Railway-Game\Start\Start\bin\Debug\Start.exe
+F:\Railway-Game\Start\Start\bin\Debug\Start.pdb
+F:\Railway-Game\Start\Start\obj\Debug\Start.csproj.AssemblyReference.cache
+F:\Railway-Game\Start\Start\obj\Debug\Start.csproj.SuggestedBindingRedirects.cache
+F:\Railway-Game\Start\Start\obj\Debug\Start.Properties.Resources.resources
+F:\Railway-Game\Start\Start\obj\Debug\Start.csproj.GenerateResource.cache
+F:\Railway-Game\Start\Start\obj\Debug\Start.csproj.CoreCompileInputs.cache
+F:\Railway-Game\Start\Start\obj\Debug\Start.exe
+F:\Railway-Game\Start\Start\obj\Debug\Start.pdb

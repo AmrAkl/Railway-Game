@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace Start
 
         public List<Point> ControlPoints;
 
-        public float t_inc = 0.001f;
+        public float t_inc = 0.0001f;
         public float time = 0;
 
         public Color cl = Color.Black;
@@ -110,7 +111,7 @@ namespace Start
             ControlPoints.Add(pt);
         }
 
-        private void DrawCurvePoints(Graphics g)
+        private void DrawCurvePoints(Graphics g, Color c,int x)
         {
             if (ControlPoints.Count <= 0)
                 return;
@@ -119,16 +120,16 @@ namespace Start
             for (float t = 0.0f; t <= 1.0; t += t_inc)
             {
                 curvePoint = CalcCurvePointAtTime(t);
-                g.FillEllipse(new SolidBrush(cl),
-                                curvePoint.X - 4, curvePoint.Y - 4,
-                                8, 8);
+                g.FillEllipse(new SolidBrush(c),
+                                curvePoint.X - 3 - x, curvePoint.Y - 3,
+                                6, 6);
             }
         }
 
-        public override void Draw(Graphics g)
+        public override void Draw(Graphics g, Color c, int x)
         {
             //DrawControlPoints(g);
-            DrawCurvePoints(g);
+            DrawCurvePoints(g,c,x);
         }
 
         public override PointF calcNextPoint()
@@ -136,7 +137,7 @@ namespace Start
             time += t_inc;
             return CalcCurvePointAtTime(time);
         }
-        public override void Relocate(Point e)
+        public override void Relocate(PointF e)
         {
             float deltx = e.X - srt.X;
             float deltY = e.Y - srt.Y;
@@ -150,5 +151,14 @@ namespace Start
             }
         }
 
+        public override void Resize(int sign)
+        {
+            Point p = ControlPoints[2];
+            p.Y -= 5 * sign;
+            ControlPoints[2] = p;
+            p = ControlPoints[3];
+            p.Y -= 5 * sign;
+            ControlPoints[3] = p;
+        }
     }
 }

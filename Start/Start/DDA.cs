@@ -69,11 +69,13 @@ namespace Start
             }
             return new PointF(cx,cy);
         }
-        public override void Draw(Graphics g)
+        public override void Draw(Graphics g, Color c, int x)
         {
-            g.DrawLine(Pens.Black, srt, end);
+            Pen pen = new Pen(new SolidBrush(c));
+            pen.Width = 5;
+            g.DrawLine(pen, srt.X - x,srt.Y, end.X - x,end.Y);
         }
-        public override void Relocate(Point e)
+        public override void Relocate(PointF e)
         {
             float deltx = e.X - srt.X;
             float deltY = e.Y - srt.Y;
@@ -82,6 +84,10 @@ namespace Start
             end.X += (int)deltx; 
             end.Y += (int)deltY;
             calc();
+        }
+        public override void Resize(int sign)
+        {
+            end.X += 5 * sign;
         }
     }
 }

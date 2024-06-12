@@ -40,9 +40,9 @@ namespace Start
             theta += (float)((2 * Math.PI) / 360);
             return p;
         }
-        public override void Draw(Graphics g)
+        public override void Draw(Graphics g, Color c, int xs)
         {
-            for (float i = 0; i <= (2 * Math.PI); i += (float)((2 * Math.PI) / 360))
+            for (float i = 0; i <= (2 * Math.PI); i += (float)((2 * Math.PI) / 720))
             {
                 //(float)(i * Math.PI / 180);
 
@@ -52,19 +52,24 @@ namespace Start
                 x += XC;
                 y += YC;
 
-                g.FillEllipse(Brushes.Black, x, y, 5, 5);
+                g.FillEllipse(new SolidBrush(c), x - xs, y, 5, 5);
             }
         }
-        public override void Relocate(Point e)
+        public override void Relocate(PointF e)
         {
-            float deltX = e.X - XC;
-            float deltY = e.Y - YC;
+            float deltX = e.X - srt.X;
+            float deltY = e.Y - srt.Y;
             XC += (int)deltX;
             YC += (int)deltY;
             srt.X += deltX;
             srt.Y += deltY;
             end.X += deltX;
             end.Y += deltY;
+        }
+        public override void Resize(int sign)
+        {
+            Rad += 5 * sign;
+            YC -= 5 * sign;
         }
     }
 }
