@@ -322,7 +322,7 @@ namespace Start
                         xdraw -= 10;
                         if (xdraw < currrail.srt.X - 500)
                             xdraw = (int)currrail.srt.X - 500;
-                    }
+                    }//edit
                     break;
                 case Modes.Move:
                     //actor.coor = currrail.calcNextPoint();
