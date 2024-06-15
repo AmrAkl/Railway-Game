@@ -15,7 +15,6 @@ namespace Start
 
         public float t_inc = 0.0001f;
         public float time = 0;
-        public float speed = 0.01f;
         
 
         public Color cl = Color.Black;
@@ -24,6 +23,7 @@ namespace Start
 
         public BezierCurve()
         {
+            speed = 0.1f;
             ControlPoints = new List<Point>();
             //ControlPoints.Add(new Point((int)srt.X,(int) end.Y));
         }
@@ -136,7 +136,7 @@ namespace Start
 
         public override PointF calcNextPoint()
         {
-            time += speed;
+            time += (speed * 0.1f);
             float tt = time;
             return CalcCurvePointAtTime(tt);
         }

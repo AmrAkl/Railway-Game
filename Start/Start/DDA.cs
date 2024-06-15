@@ -11,7 +11,11 @@ namespace Start
     {
         float dy, dx, m;
         public float cx, cy;
-        int speed = 10;
+
+        public DDA()
+        {
+            speed = 0.1f;
+        }
         public void calc()
         {
             dy = end.Y - srt.Y;
@@ -27,8 +31,8 @@ namespace Start
             {
                 if (srt.X < end.X)
                 {
-                    cx += speed;
-                    cy += m * speed;
+                    cx += (speed * 100);
+                    cy += m * (speed * 100);
                     if (cx >= end.X)
                     {
                         return new Point((int)end.X + 1, (int)end.Y-20);
@@ -37,8 +41,8 @@ namespace Start
                 }
                 else
                 {
-                    cx -= speed;
-                    cy -= m * speed;
+                    cx -= (speed * 100);
+                    cy -= m * (speed * 100);
                     if (cx <= end.X)
                     {
                         return new Point((int)end.X + 1, (int)end.Y-20);
@@ -49,8 +53,8 @@ namespace Start
             {
                 if (srt.Y < end.Y)
                 {
-                    cy += speed;
-                    cx += 1 / m * speed;
+                    cy += (speed * 100);
+                    cx += 1 / m * (speed * 100);
                     if (cy >= end.Y)
                     {
                         return new Point((int)end.X + 1, (int)end.Y - 20);
@@ -58,8 +62,8 @@ namespace Start
                 }
                 else
                 {
-                    cy -= speed;
-                    cx -= 1 / m * speed;
+                    cy -= (speed * 100);
+                    cx -= 1 / m * (speed * 100);
                     if (cy <= end.Y)
                     {
                         return new Point( (int)end.X + 1, (int)end.Y-20);

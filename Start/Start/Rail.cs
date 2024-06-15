@@ -11,6 +11,9 @@ namespace Start
     {
         public PointF srt;
         public PointF end;
+        public int flag = 0;
+        public float theta;
+        public float speed;
         public Rail() {
             srt = new Point();
             end = new Point();

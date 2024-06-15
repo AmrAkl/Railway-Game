@@ -26,6 +26,7 @@ namespace Start
         List<Background> bgs = new List<Background>();
         int xdraw = 0;
         Hero h = new Hero();
+        float Aspeed = 0.1f;
 
 
         public Form1()
@@ -43,6 +44,20 @@ namespace Start
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            if (curr == Modes.Move && e.KeyCode == Keys.Right)
+            {
+                for(int i = 0;i<cars.Count;i++)
+                {
+                    cars[i].speed += 0.1f;
+                }    
+            }
+            else if (curr == Modes.Move && e.KeyCode == Keys.Left)
+            {
+                for (int i = 0; i < cars.Count; i++)
+                {
+                    cars[i].speed -= 0.1f;
+                }
+            }
             if (curr == Modes.Move && e.KeyCode != Keys.S)
                 return;
             else if(curr == Modes.Move && e.KeyCode == Keys.S)
@@ -100,7 +115,7 @@ namespace Start
                     currrail = cars[0];
                     break;
                 case Keys.U:
-                    curveDirection = -1;
+                    curveDirection = 1;
                     break;
                 case Keys.I:
                     curveDirection = -1;
@@ -184,6 +199,7 @@ namespace Start
             end.Y = actor.coor.Y + actor.height;
             lastShapeX += 100 + actor.width;
             line.end = end;
+            line.speed = Aspeed;
             line.calc();
             cars.Add(line);
         }
@@ -197,6 +213,9 @@ namespace Start
             circle.YC = (int)actor.coor.Y - circle.Rad / 2 - 40;
             lastShapeX += circle.Rad - 40;
             circle.srt = circle.end = new PointF(lastShapeX,actor.coor.Y);
+            circle.flag = 1;
+            circle.theta = 90;
+            circle.speed = Aspeed;
             cars.Add(circle);
             AddLine();
         }
@@ -219,6 +238,7 @@ namespace Start
             curve.end = new Point(lastShapeX + 450, (int)actor.coor.Y + actor.height);
             curve.ControlPoints.Add(p);
             lastShapeX += 120;
+            curve.speed = Aspeed;
             cars.Add(curve);
         }
 
@@ -310,7 +330,18 @@ namespace Start
                     {
                         if(cars.IndexOf(currrail) < cars.Count - 1)
                         {
-                            currrail = cars[cars.IndexOf(currrail) + 1];
+                            if(cars[cars.IndexOf(currrail)].flag == 0)
+                                currrail = cars[cars.IndexOf(currrail) + 1];
+                            else if(currrail.theta > -270)
+                            {
+                                actor.coor = currrail.calcNextPoint();
+                                xdraw = (int)actor.coor.X;
+                                Text = "" + currrail.theta;
+                            }
+                            else
+                            {
+                                currrail = cars[cars.IndexOf(currrail) + 1];
+                            }
                         }
                         else
                         {
@@ -321,9 +352,12 @@ namespace Start
                     else
                     {
                         actor.coor = currrail.calcNextPoint();
+                        xdraw = (int)actor.coor.X;
+
                     }
                     break;
             }
+            Text = "" + Aspeed + "  " + currrail.speed;
             DrawDoubleBuffer(this.CreateGraphics());
         }
 
@@ -356,8 +390,8 @@ namespace Start
 
                 car.Draw(g, Color.Black,xdraw);
             }
-            currrail.Draw(g, Color.Blue, xdraw);
-            g.FillRectangle(Brushes.Black, new Rectangle(0, 750, Width, Height));
+            if(curr == Modes.Edit)
+                currrail.Draw(g, Color.Blue, xdraw);
         }
 
         void CreateBackgrounds()
